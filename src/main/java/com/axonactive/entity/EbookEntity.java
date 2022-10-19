@@ -2,12 +2,12 @@ package com.axonactive.entity;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "ebook")
 @NamedQuery(
         name = "Ebooks.findAll",
-        query = "SELECT e FROM Ebook e ORDER BY e.title"
+        query = "SELECT e FROM ebook e ORDER BY e.title"
 )
-public class Ebook {
+public class EbookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
