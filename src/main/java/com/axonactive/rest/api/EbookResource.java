@@ -32,5 +32,16 @@ public class EbookResource {
         return Response.ok(ebook).status(201).build();
     }
 
+    @PUT
+    @Transactional
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Ebook updateEbook(Ebook ebook) {
+        Ebook updatedEbook = em.find(Ebook.class, ebook.getId());
+        updatedEbook.setTitle(ebook.getTitle());
+        updatedEbook.setAuthor(ebook.getAuthor());
+        updatedEbook.setPublishedYear(ebook.getPublishedYear());
 
+        return updatedEbook;
+    }
 }
