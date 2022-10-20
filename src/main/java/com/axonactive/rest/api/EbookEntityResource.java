@@ -13,7 +13,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/ebooks")
+@Path("/api/ebooks")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Tag(name = "Ebook REST endpoint")
@@ -63,9 +63,13 @@ public class EbookEntityResource {
     @Operation(summary = "Update an Ebook")
     @APIResponses({
             @APIResponse(responseCode = "200", description = "Ebook updated successfully"),
+            @APIResponse(responseCode = "422", description = "Ebook ID was not set on request"),
             @APIResponse(responseCode = "404", description = "Ebook does not exist")
     })
     public EbookEntity updateEbook(EbookEntity ebook) {
+        if (ebook.getId() == null) {
+            throw new WebApplicationException("Ebook ID was not set on request.", 422);
+        }
         EbookEntity updatedEbook = em.find(EbookEntity.class, ebook.getId());
         if (updatedEbook == null) {
             throw new WebApplicationException("Ebook with id of " + ebook.getId() + " does not exist.", 404);

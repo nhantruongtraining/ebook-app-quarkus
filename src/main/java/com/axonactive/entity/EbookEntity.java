@@ -2,7 +2,8 @@ package com.axonactive.entity;
 
 import javax.persistence.*;
 
-@Entity(name = "ebook")
+@Entity
+@Table(name = "ebook")
 @NamedQuery(
         name = "Ebooks.findAll",
         query = "SELECT e FROM ebook e ORDER BY e.title"
