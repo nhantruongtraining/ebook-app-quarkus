@@ -20,7 +20,7 @@ import javax.ws.rs.core.Response;
 public class EbookEntityResource {
 
     @Inject
-    EntityManager em;
+    private EntityManager em;
 
     @GET
     @Operation(summary = "Retrieve all Ebooks")

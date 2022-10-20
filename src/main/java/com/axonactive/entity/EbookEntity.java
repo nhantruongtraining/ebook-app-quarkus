@@ -1,9 +1,11 @@
 package com.axonactive.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name = "ebook")
+@Entity(name = "ebook")
+//@Table(name = "ebook")
 @NamedQuery(
         name = "Ebooks.findAll",
         query = "SELECT e FROM ebook e ORDER BY e.title"
@@ -11,6 +13,7 @@ import javax.persistence.*;
 public class EbookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GenericGenerator("uuid2")
     private Integer id;
 
     @Column(length = 200)
